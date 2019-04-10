@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="Oke-bot" >
+
+	<xacro:property name="Oke-bot_frame_file" value="package://Oke-bot/meshes/Okebot_framedae"/>
+	<xacro:property name="thruster_guard_file" value="package://Oke-bot/meshes/thruster_guard.dae"/>
+	<xacro:property name="thruster_propeller_file" value="package://Oke-bot/meshes/thruster_proppeller.dae"/>
+
+	<xacro:property name="frame_mass" value="5.0"/>
+	<xacro:property name="gurad_mass" value="1.339"/>
+	<xacro:property name="propeller_mass" value="0.203"/>
+	<xacro:property name="guard_length_x1" value="0.115"/>
+	<xacro:property name="guard_length_x2" value="0.005"/>
+	<xacro:property name="guard_length_z1" value="-0.007"/>
+	<xacro:property name="guard_length_z2" value="0.115"/>
+	<xacro:property name="guard_length_z3" value="0.005."/>
+	<xacro:property name="guard_height" value="-0.099"/>
+	<xacro:property name="propeller_length_x" value=""/>
+	<xacro:property name="propeller_length_y" value=""/>
+	<xacro:property name="propeller_length_z" value=""/>
+
+	<link name="okebot_base_link">
+		<!-- inertial(material, iner)-->
+	  	<inertial>
+	    	<mass value="${frame_mass}"/>
+	      	<inertia ixx = "1.988E+08"  ixy ="-1.016E+05"  ixz = "6.901E+06"
+					 iyx = "-1.016E+05" iyy = "3.364E+08"  iyz = "-8.738E+04"
+					 izx = "6.901E+06"  izy = "-8.738E+04"  izz = "1.988E+08"/>
+	    	</inertial>
+	    <visual>
+	      	<geometry>
+	      		<mesh filename="${visual_mesh_file}" scale="0.001 0.001 0.001"/>
+	      	</geometry>
+	    </visual>
+	    <collision>
+	      	<geometry>
+	          <box size="0.384 0.300 0.384"/>
+	        </geometry>
+	  	</collision>
+	</link>
+
+	<link name="thruster_guard_link">
+		<inertial>
+			<mass value="${guard_mass}"/>
+	      	<inertia ixx = "1.227E+06"  ixy = "22.808"     ixz = "12.874"
+					 iyx = "22.808"     iyy = "1.189E+06"  iyz = "7036.714"
+					 izx = "12.874"     izy = "7036.714"   izz = "1.374E+06"/>
+	    	</inertial>
+		</inertial>
+	    <visual>
+	      	<geometry>
+	      		<mesh filename="${thruster_guard_file}" scale="0.001 0.001 0.001"/>
+	      	</geometry>
+	    </visual>
+	</link>
+
+	<link name="thruster_proppeller_link">
+		<inertial>
+			<mass value="${propeller_mass}"/>
+	      	<inertia ixx = "2.964E+04"  ixy = "1652.571"  ixz = "-2.620E-08"
+					 iyx = "1652.571"   iyy = "2.746E+04" iyz = "2.516E-07"
+					 izx = "-2.620E-08" izy = "2.516E-07" izz = "4.384E+04"/>
+	    	</inertial>
+		</inertial>
+	    <visual>
+	      	<geometry>
+	      		<mesh filename="${thruster_propeller_file}" scale="0.001 0.001 0.001"/>
+	      	</geometry>
+	    </visual>
+	</link>
+
+	<joint name="frame_guard_joint">
+		<origin xyz="${guard_length_x1} ${guard_height} ${guard_length_z1}" rpy="0 0 180"/>
+		<parent link="okebot_base_link"/>
+		<child link="thruster_guard_link"/>
+	</joint>
+
+	<joint name="guard_propeller_joint">
+		<origin xyz="${guard_length_x1} ${guard_height} ${guard_length_z1}" rpy="0 0 180"/>
+		<parent link="thruster_guard_link"/>
+		<child link="thruster_propeller_link"/>
+	</joint>
+</robot>
