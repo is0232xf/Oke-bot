@@ -4,54 +4,116 @@
 <!-- |    EDITING THIS FILE BY HAND IS NOT RECOMMENDED                                 | -->
 <!-- =================================================================================== -->
 <robot name="Oke-bot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <material name="Orange">
+    <color rgba="1.0 0.4 0.0 1.0"/>
+  </material>
+  <material name="Grey">
+    <color rgba="0.7 0.7 0.7 1.0"/>
+  </material>
+  <material name="DarkGrey">
+    <color rgba="0.3 0.3 0.3 1.0"/>
+  </material>
+  <material name="White">
+    <color rgba="1.0 1.0 1.0 1.0"/>
+  </material>
+  <material name="Black">
+    <color rgba="0.0 0.0 0.0 1.0"/>
+  </material>
+  <material name="Red">
+    <color rgba="1.0 0.0 0.0 1.0"/>
+  </material>
+  <material name="Green">
+    <color rgba="0.0 1.0 0.0 1.0"/>
+  </material>
+  <material name="Blue">
+    <color rgba="0.0 0.0 0.8 1.0"/>
+  </material>
+  <material name="LightGrey">
+    <color rgba="0.80 0.80 0.80 1.0"/>
+  </material>
   <link name="okebot_base_link">
-    <!-- inertial(material, iner)-->
     <inertial>
       <mass value="5.0"/>
       <inertia ixx="1.988E+08" ixy="-1.016E+05" ixz="6.901E+06" iyx="-1.016E+05" iyy="3.364E+08" iyz="-8.738E+04" izx="6.901E+06" izy="-8.738E+04" izz="1.988E+08"/>
     </inertial>
     <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
       <geometry>
-        <mesh filename="package://Oke-bot/meshes/Okebot_frame.dae" scale="0.001 0.001 0.001"/>
+        <mesh filename="/home/yasuyuki/vrx_ws/src/vrx/Oke-bot/meshes/DAE/Okebot_framev2.dae" scale="0.001 0.001 0.001"/>
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <box size="0.384 0.300 0.384"/>
+        <mesh filename="/home/yasuyuki/vrx_ws/src/vrx/Oke-bot/meshes/STL/okebot_framev2.stl" scale="0.001 0.001 0.001"/>
       </geometry>
     </collision>
   </link>
-  <link name="thruster_guard_link">
+  <link name="thruster_1_guard_link">
     <inertial>
       <mass value="1.339"/>
       <inertia ixx="1.227E+06" ixy="22.808" ixz="12.874" iyx="22.808" iyy="1.189E+06" iyz="7036.714" izx="12.874" izy="7036.714" izz="1.374E+06"/>
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://Oke-bot/meshes/thruster_guard.dae" scale="0.001 0.001 0.001"/>
+        <mesh filename="/home/yasuyuki/vrx_ws/src/vrx/Oke-bot/meshes/DAE/thruster_guardv2.dae" scale="0.001 0.001 0.001"/>
       </geometry>
     </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.115 -0.007 -0.099"/>
+      <geometry>
+        <mesh filename="/home/yasuyuki/vrx_ws/src/vrx/Oke-bot/meshes/STL/thruster_guard.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
   </link>
-  <link name="thruster_proppeller_link">
+  <joint name="thruster_1_joint" type="fixed">
+    <parent link="okebot_base_link"/>
+    <child link="thruster_1_guard_link"/>
+    <origin rpy="0 0 0" xyz="-0.115 -0.007 -0.099"/>
+  </joint>
+  <link name="thruster_3_guard_link">
+    <inertial>
+      <mass value="1.339"/>
+      <inertia ixx="1.227E+06" ixy="22.808" ixz="12.874" iyx="22.808" iyy="1.189E+06" iyz="7036.714" izx="12.874" izy="7036.714" izz="1.374E+06"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="/home/yasuyuki/vrx_ws/src/vrx/Oke-bot/meshes/DAE/thruster_guardv2.dae" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 3.141592" xyz="0.115 -0.007 -0.099"/>
+      <geometry>
+        <mesh filename="/home/yasuyuki/vrx_ws/src/vrx/Oke-bot/meshes/STL/thruster_guard.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="thruster_3_joint" type="fixed">
+    <parent link="okebot_base_link"/>
+    <child link="thruster_3_guard_link"/>
+    <origin rpy="0 0 3.141592" xyz="0.115 -0.007 -0.099"/>
+  </joint>
+  <link name="thruster_1_propeller_link">
     <inertial>
       <mass value="0.203"/>
       <inertia ixx="2.964E+04" ixy="1652.571" ixz="-2.620E-08" iyx="1652.571" iyy="2.746E+04" iyz="2.516E-07" izx="-2.620E-08" izy="2.516E-07" izz="4.384E+04"/>
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="package://Oke-bot/meshes/thruster_proppeller.dae" scale="0.001 0.001 0.001"/>
+        <mesh filename="/home/yasuyuki/vrx_ws/src/vrx/Oke-bot/meshes/DAE/thruster_propeller.dae" scale="0.001 0.001 0.001"/>
       </geometry>
     </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="-0.115 -0.007 -0.099"/>
+      <geometry>
+        <mesh filename="/home/yasuyuki/vrx_ws/src/vrx/Oke-bot/meshes/STL/thruster_propeller.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
   </link>
-  <joint name="frame_guard_joint">
-    <origin rpy="0 0 180" xyz="0.115 -0.099 -0.007"/>
-    <parent link="okebot_base_link"/>
-    <child link="thruster_guard_link"/>
-  </joint>
-  <joint name="guard_propeller_joint">
-    <origin rpy="0 0 180" xyz="0.115 -0.099 -0.007"/>
-    <parent link="thruster_guard_link"/>
-    <child link="thruster_propeller_link"/>
+  <joint name="thruster_1_joint" type="continuous">
+    <parent link="thruster_1_guard_link"/>
+    <child link="thruster_1_propeller_link"/>
+    <axis xyz="0 1 0"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
   </joint>
 </robot>
 
