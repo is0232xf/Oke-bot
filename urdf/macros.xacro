@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<!-- Includes all macros in this package so they don't need to be included individualy -->
+<robot xmlns:xacro="http://ros.org/wiki/xacro"
+       name="Oke-bot">
+  <!-- Include dynamics macros -->
+  <xacro:include filename="$(find wamv_gazebo)/urdf/dynamics/Oke-bot_gazebo_dynamics_plugin.xacro" />
+  <xacro:include filename="$(find wamv_gazebo)/urdf/dynamics/Oke-bot_gazebo_wind_plugin.xacro" />
+</robot>
