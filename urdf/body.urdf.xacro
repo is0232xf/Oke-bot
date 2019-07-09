@@ -5,7 +5,7 @@
 	<xacro:property name="body_file" value="$(find Oke-bot)/meshes/DAE/Okebot_framev2.dae"/>
 	<xacro:property name="guard_file" value="$(find Oke-bot)/meshes/DAE/thruster_guardv2.dae"/>
 	<xacro:property name="propeller_file" value="$(find Oke-bot)/meshes/DAE/thruster_propeller.dae"/>
-	<xacro:property name="body_collision" value="$(find Oke-bot)/meshes/STL/okebot_framev2.stl"/>
+	<xacro:property name="body_collision" value="$(find Oke-bot)/meshes/STL/Oke-bot_v12.stl"/>
 	<xacro:property name="guard_collision" value="$(find Oke-bot)/meshes/STL/thruster_guard.stl"/>
 	<xacro:property name="propeller_collision" value="$(find Oke-bot)/meshes/STL/thruster_propeller.stl"/>
 
@@ -59,12 +59,6 @@
 		      		<mesh filename="${guard_file}" scale="0.001 0.001 0.001"/>
 		      	</geometry>
 		    </visual>
-		    <collision>
-				<origin xyz="${length_x} ${length_y} ${guard_height}" rpy="0 0 ${yaw}"/>
-		      	<geometry>
-		      		<mesh filename="${guard_collision}" scale="0.001 0.001 0.001"/>
-		        </geometry>
-		  	</collision>
 		</link>
 	</xacro:macro>
 	<!--
@@ -118,17 +112,6 @@
 					 iyx = "1652.571"   iyy = "2.746E+04" iyz = "2.516E-07"
 					 izx = "-2.620E-08" izy = "2.516E-07" izz = "4.384E+04"/>
 		</inertial>
-	    <visual>
-	      	<geometry>
-	      		<mesh filename="${propeller_file}" scale="0.001 0.001 0.001"/>
-	      	</geometry>
-	    </visual>
-	    <collision>
-			<origin xyz="${-guard_length_x1} ${guard_length_y1} ${guard_height}" rpy="0 0 0"/>
-	      	<geometry>
-	      		<mesh filename="${propeller_collision}" scale="0.001 0.001 0.001"/>
-	        </geometry>
-	  	</collision>
 	</link>
 
 	<joint name="propeller_2_joint" type="continuous">
@@ -150,12 +133,6 @@
 	      		<mesh filename="${propeller_file}" scale="0.001 0.001 0.001"/>
 	      	</geometry>
 	    </visual>
-	    <collision>
-			<origin xyz="${guard_length_x2} ${guard_length_y2} ${guard_height}" rpy="0 0 0"/>
-	      	<geometry>
-	      		<mesh filename="${propeller_collision}" scale="0.001 0.001 0.001"/>
-	        </geometry>
-	  	</collision>
 	</link>
 
 	<joint name="propeller_3_joint" type="continuous">
@@ -172,17 +149,6 @@
 					 iyx = "1652.571"   iyy = "2.746E+04" iyz = "2.516E-07"
 					 izx = "-2.620E-08" izy = "2.516E-07" izz = "4.384E+04"/>
 		</inertial>
-	    <visual>
-	      	<geometry>
-	      		<mesh filename="${propeller_file}" scale="0.001 0.001 0.001"/>
-	      	</geometry>
-	    </visual>
-	    <collision>
-			<origin xyz="${guard_length_x1} ${guard_length_y1} ${guard_height}" rpy="0 0 0"/>
-	      	<geometry>
-	      		<mesh filename="${propeller_collision}" scale="0.001 0.001 0.001"/>
-	        </geometry>
-	  	</collision>
 	</link>
 
 	<joint name="propeller_4_joint" type="continuous">
@@ -204,11 +170,5 @@
 	      		<mesh filename="${propeller_file}" scale="0.001 0.001 0.001"/>
 	      	</geometry>
 	    </visual>
-	    <collision>
-			<origin xyz="${guard_length_x2} ${-guard_length_y2} ${guard_height}" rpy="0 0 0"/>
-	      	<geometry>
-	      		<mesh filename="${propeller_collision}" scale="0.001 0.001 0.001"/>
-	        </geometry>
-	  	</collision>
 	</link>
 </robot>
